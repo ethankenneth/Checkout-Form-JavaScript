@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+ 	<!-- Set the title for the page -->
+	<title>Basic HTML Document</title>
+
+	<style>
+		form p label {et property 'options' of undefi
+			display:block;
+			float:left;
+			width:150px;
+		}
+
+		.tab {
+			margin-left: 40px;
+		}
+
+	</style>
+	</style>
+
+	<script>
+		function copyAddress() {
+			document.forms['shippingAddressForm'].streetAddress.value = (document.forms['billingAddressForm'].streetAddress.value);
+
+			document.forms['shippingAddressForm'].city.value = (document.forms['billingAddressForm'].city.value);
+
+			document.forms['shippingAddressForm'].state.value = (document.forms['billingAddressForm'].state.value);
+
+			document.forms['shippingAddressForm'].zip.value = (document.forms['billingAddressForm'].zip.value);
+
+		} // end copyAddress()
+
+		function showSelectedCar() {
+			var theCar = document.getElementById("cars");
+			alert(theCar.options[theCar.selectedIndex].value);
+		} //  end showSelectedCar()
+
+		function validateNumber() {
+			var numberValue = parseInt(document.getElementById("valueCheckNumber").value);
+
+			if(isNaN(numberValue)) {
+				alert("the value entered is not a number!");
+				return;
+			}
+
+			if(numberValue > 100) {
+				alert ("The value of " + numberValue + " is greater than 100");
+			} else {
+				alert ("The value of " + numberValue + " is less than or equal to 100");
+			}
+		} // end validateNumber()
+
+		function convertToUpper() {
+			var textValue = document.getElementById("toUpperValue").value;
+			//textValue = textValue.toUpperCase();
+			document.getElementById("toUpperValue").value = textValue.toUpperCase();
+			// alert(textValue);
+		} // end convertToUpper()
+
+		function testBlur(myBlurForm) {
+			var formValue = myBlurForm.value;
+			myBlurForm.value = formValue.toLowerCase();
+			//alert (formValue);
+		}
+
+	</script>
+</head>
+<body>
+
+	<h2>#1) CHECKOUT FORM</h2>
+	<P>Create a form that has fields for a mailing address and a billing address. Include a button that when clicked will copy the values from the mailing address to the billing address fields (so your user does not have to type them twice). You should write a function that copies the values from one field to the other. The button should call the function when clicked.</p>
+
+
+	<h2>Billing Address</h2>
+
+	<form name='billingAddressForm'>
+		<p>
+			<label>Street Address:</label>
+			<input type="text" name="streetAddress"><br />
+		</p>
+
+		<p>
+			<label>City:</label>
+			<input type="text" name="city"><br>
+		</p>
+
+		<p>
+			<label>State:</label>
+			<input type="text" name="state"><br>
+		</P>
+
+		<p>
+			<label>Zip:</label>
+			<input type="text" name="zip"><br>
+		</p>
+
+		<input type="button" value="Copy" onclick="copyAddress()">
+	</form>
+
+	<h2>Shipping Address</h2>
+
+	<form name='shippingAddressForm'>
+		<p>
+			<label>Street Address:</label>
+			<input type="text" name="streetAddress"><br />
+		</p>
+
+		<p>
+			<label>City:</label>
+			<input type="text" name="city"><br>
+		</p>
+
+		<p>
+			<label>State:</label>
+			<input type="text" name="state"><br>
+		</P>
+
+		<p>
+			<label>Zip:</label>
+			<input type="text" name="zip"><br>
+		</p>
+	</form>
+
+	<hr>
+
+	<h2>#2 Using a DropDown Box</h2>
+	<P>Create a page with one dropdown box and one button. When the button is clicked an alert box should pop up that displays the currently selected value from the drop down box: (again use a function. the function should be called when the button is clicked)</p>
+
+	<form name="carSelection" id="carSelection">
+
+		<select name="cars" id="cars">
+			<option value="volvo">Volvo</option>
+			<option value="saab">Saab</option>
+			<option value="opel">Opel</option>
+			<option value="audi">Audi</option>
+		</select>
+		<br><br>
+		<input type="button" value="Display Car Selected" onclick="showSelectedCar()">
+	</form>
+
+	<hr>
+
+	<h2>#3 Using parseInt and if statement</h2>
+	<p>Create a form with one field and one button. When the button is clicked a function should be called which should contain the following logic:</p>
+
+	<ol type="1">
+		<li>Turn the value in the field into a number using the parseInt function: <b>var x = parseInt(myVariable)</b>;</li>
+		<li>If the value entered is greater than 100, alert 'Number is greater than 100'</li>
+		<li>if (x > 100) alert'....'; </li>
+		<li>otherwise alert 'Number is equal to or less than 100' else alert '.....';</li>
+	</ol>
+
+	<form name="valueCheck"	id="valueCheck">
+		<p>
+			<label>Enter a number:</label>
+			<input type="number" id="valueCheckNumber"><br>
+		</p>
+
+		<input type="button" value="Check Number" onclick="validateNumber()">
+
+	<br><br>
+	</form>
+
+	<hr>
+
+	<h2>#4 Using the toUpperCase() Function</h2>
+	<p>Create a form with one text entry field and one button. When the button is clicked a function should transform the value in the text entry field to all uppercase letters using the javascript toUpperCase() function.</p>
+
+	<form name="toUpperForm" id="toUpperForm">
+		<p>
+			<label>Enter a value:</label>
+			<input type="text" id="toUpperValue"><br>
+		</p>
+
+		<input type="button" value="Convert To Upper Case" onclick="convertToUpper()">
+
+	<br><br>
+	</form>
+
+	<hr>
+
+	<h2>#5 Using onBlur and this</h2>
+	<p>Create a form that has five text entry fields. Each field should have an "onBlur" event which calls a function. This will trigger the function each time the user tabs out of any of the fields. The function should transform the value in the field to all lowercase. This can be accomplished by passing "this" into the function.</p>
+
+
+	<form name="blurForm" id="blurForm">
+
+		<p>
+			<label>Blur Field 1</label>
+			<input type="text" name="testBlurField1" id="testBlurField1" value="" onBlur="testBlur(this)"> <br>
+		</P>
+
+		<p>
+			<label>Blur Field 2</label>
+			<input type="text" name="testBlurField2" id="testBlurField2" value="" onBlur="testBlur(this)"> <br>
+		</P>
+
+		<p>
+			<label>Blur Field 3</label>
+			<input type="text" name="testBlurField3" id="testBlurField3" value="" onBlur="testBlur(this)"> <br>
+		</P>
+
+		<p>
+			<label>Blur Field 4</label>
+			<input type="text" name="testBlurField4" id="testBlurField4" value="" onBlur="testBlur(this)"> <br>
+		</P>
+
+		<p>
+			<label>Blur Field 5</label>
+			<input type="text" name="testBlurField5" id="testBlurField5" value="" onBlur="testBlur(this)"> <br>
+		</P>
+
+	</form>
+
+	<hr>
+</body>
+</html>
